@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="/static/css/visitor.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="top">
+      <h1>방명록 확인</h1>
+      <br />
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>작성자</th>
+            <th>방명록</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(let i = 0; i < visit.length; i++) { %>
+          <tr id="tr_<%= visit[i].id %>">
+            <td><%= visit[i].id %></td>
+            <td><%= visit[i].name %></td>
+            <td><%= visit[i].comment %></td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+      <a href="/visitor/main"> 돌아가기 </a>
+    </div>
+  </body>
+</html>

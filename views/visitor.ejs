@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="/static/css/visitor.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="top">
+      <h1>방명록 등록</h1>
+      <br />
+      <from>
+        <input type="text" id="userId" placeholder="유저 id 등록" />
+        <input type="text" id="userName" placeholder="사용자 이름" />
+        <input type="text" id="write" placeholder="방명록 작성" />
+        <button type="button" onclick="createData()">등록</button>
+      </from>
+      <br />
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>작성자</th>
+            <th>방명록</th>
+            <th>수정</th>
+            <th>삭제</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(let i = 0; i < visit.length; i++) { %>
+          <tr id="tr_<%= visit[i].id %>">
+            <td><%= visit[i].id %></td>
+            <td>
+              <a href="/visitor/detail/<%= visit[i].id %>">
+                <%= visit[i].name %>
+              </a>
+            </td>
+            <td><%= visit[i].comment %></td>
+            <td><button type="button">수정</button></td>
+            <td><button type="button">삭제</button></td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+      <a href="/"> 돌아가기 </a>
+    </div>
+  </body>
+  <script>
+    const createData = () => {
+      const id = document.getElementById("userId").value;
+      const userName = document.getElementById("userName").value;
+      const write = document.getElementById("write").value;
+
+      axios({
+        method: "post",
+        url: "visitor/post/test",
+        data: { userid: id, name: userName, comment: write },
+      })
+        .then((res) => {
+          console.log(res);
+          alert("등록성공");
+          window.location.reload();
+        })
+        .catch((e) => {
+          console.log("에러 :", e);
+        });
+    };
+  </script>
+</html>
