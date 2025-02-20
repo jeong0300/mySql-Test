@@ -16,4 +16,27 @@ const createRow = async (req, res) => {
   res.send("200");
 };
 
-module.exports = { getVisitors, getVisitorOne, createRow };
+// 해당 id 삭제
+const deleteRow = async (req, res) => {
+  await visitor.deleteData(req.params.id);
+  res.send("200");
+};
+
+const moveWrite = async (req, res) => {
+  const visit = await visitor.getOne(req.params.id);
+  res.render("visitorWrite", { visit });
+};
+
+const dataUpdate = async (req, res) => {
+  const visit = await visitor.updateRow(req.body);
+  res.send("200");
+};
+
+module.exports = {
+  getVisitors,
+  getVisitorOne,
+  createRow,
+  deleteRow,
+  moveWrite,
+  dataUpdate,
+};

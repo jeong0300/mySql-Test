@@ -36,4 +36,25 @@ const postData = async (data) => {
   }
 };
 
-module.exports = { getVisitors, getOne, postData };
+// 해당 로우 삭제하기
+const deleteData = async (id) => {
+  const query = `DELETE FROM users WHERE id = ?`;
+  try {
+    await pool.query(query, [id]);
+    console;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+// 해당 아이디를 가진 데이터 수정
+const updateRow = async (data) => {
+  const query = `UPDATE users SET name = ?, comment = ? WHERE id = ?`;
+  try {
+    await pool.query(query, [data.name, data.comment, Number(data.id)]);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+module.exports = { getVisitors, getOne, postData, deleteData, updateRow };

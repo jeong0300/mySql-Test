@@ -11,12 +11,12 @@
     <div class="top">
       <h1>방명록 등록</h1>
       <br />
-      <from>
+      <form>
         <input type="text" id="userId" placeholder="유저 id 등록" />
         <input type="text" id="userName" placeholder="사용자 이름" />
         <input type="text" id="write" placeholder="방명록 작성" />
         <button type="button" onclick="createData()">등록</button>
-      </from>
+      </form>
       <br />
       <table>
         <thead>
@@ -38,8 +38,19 @@
               </a>
             </td>
             <td><%= visit[i].comment %></td>
-            <td><button type="button">수정</button></td>
-            <td><button type="button">삭제</button></td>
+            <td>
+              <button type="button" onclick="updatePage('<%= visit[i].id %>')">
+                수정
+              </button>
+            </td>
+            <td>
+              <button
+                type="button"
+                onclick="deleteVisitor('<%= visit[i].id %>')"
+              >
+                삭제
+              </button>
+            </td>
           </tr>
           <% } %>
         </tbody>
@@ -55,7 +66,7 @@
 
       axios({
         method: "post",
-        url: "visitor/post/test",
+        url: "/visitor/post/test",
         data: { userid: id, name: userName, comment: write },
       })
         .then((res) => {
@@ -66,6 +77,26 @@
         .catch((e) => {
           console.log("에러 :", e);
         });
+    };
+
+    const deleteVisitor = (id) => {
+      // console.log(id);
+      // return;
+      axios({
+        method: "delete",
+        url: `/visitor/delete/${id}`,
+      })
+        .then((res) => {
+          alert("삭제 성공!");
+          window.location.reload();
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    };
+
+    const updatePage = (id) => {
+      window.location.href = `/visitor/write/${id}`;
     };
   </script>
 </html>
