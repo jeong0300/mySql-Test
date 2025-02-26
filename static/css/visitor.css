@@ -4,6 +4,7 @@ body {
   color: #333;
   text-align: center;
   margin: 20px;
+  position: relative;
 }
 
 .top {
@@ -69,4 +70,9 @@ th {
 
 tbody tr:nth-child(even) {
   background-color: #f1f3f5;
+}
+
+.alertBox {
+  position: absolute;
+  background-color: white;
 }

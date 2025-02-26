@@ -12,15 +12,15 @@
     <form name="updateData">
       <div>
         이름
-        <input name="name" value="<%= visit[0].name %>" />
+        <input name="name" value="<%= visit.name %>" />
       </div>
 
       <div>
         방명록
-        <input name="comment" value="<%= visit[0].comment %>" />
+        <input name="comment" value="<%= visit.comment %>" />
       </div>
 
-      <button type="button" onclick="updateForm('<%= visit[0].id %>')">
+      <button type="button" onclick="updateForm('<%= visit.id %>')">
         수정
       </button>
     </form>
