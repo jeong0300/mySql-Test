@@ -6,6 +6,7 @@ const port = 3000;
 const bodyParser = require("body-parser");
 
 const indexRouter = require("./routes/indes");
+const loginRouter = require("./routes/login");
 
 app.set("views", path.join(__dirname, "/views"));
 app.set("view engine", "ejs");
@@ -16,6 +17,7 @@ app.use(express.json());
 
 app.use("/static", express.static(path.join(__dirname, "static")));
 app.use("/visitor", indexRouter);
+app.use("/login", loginRouter);
 
 app.get("/", (req, res) => {
   console.log("이동");
